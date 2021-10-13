@@ -36,8 +36,8 @@ class TextDropdownFormField extends StatelessWidget {
       validator: validator,
       dropdownHeight: dropdownHeight,
       displayItemFn: (dynamic str) => Text(
-        str ?? '',
-        style: TextStyle(fontSize: 16),
+        str,
+        style: TextStyle(fontSize: 16, color: Color(0xFF1E2452)),
       ),
       findFn: findFn ?? (dynamic str) async => options,
       filterFn: filterFn ??
@@ -45,9 +45,14 @@ class TextDropdownFormField extends StatelessWidget {
               item.toLowerCase().indexOf(str.toLowerCase()) >= 0,
       dropdownItemFn: (dynamic item, position, focused, selected, onTap) =>
           ListTile(
-        title: Text(
-          item,
-          style: TextStyle(color: selected ? Colors.blue : Colors.black87),
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+          child: Text(
+            item,
+            style: TextStyle(
+                color: selected ? Colors.blue : Color(0xFF182A58),
+                fontSize: 18),
+          ),
         ),
         tileColor: focused ? Color.fromARGB(20, 0, 0, 0) : Colors.transparent,
         onTap: onTap,

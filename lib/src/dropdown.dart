@@ -162,7 +162,7 @@ class DropdownFormFieldState<T> extends State<DropdownFormField>
       link: this._layerLink,
       child: GestureDetector(
         onTap: () {
-          _widgetFocusNode.requestFocus();
+          // _widgetFocusNode.requestFocus();
           _toggleOverlay();
         },
         child: Focus(
@@ -198,6 +198,9 @@ class DropdownFormFieldState<T> extends State<DropdownFormField>
                 isFocused: _isFocused,
                 child: this._overlayEntry != null
                     ? EditableText(
+                        showCursor: false,
+                        readOnly: true,
+                        keyboardType: TextInputType.none,
                         style: TextStyle(fontSize: 16, color: Colors.black87),
                         controller: _searchTextController,
                         cursorColor: Colors.black87,
@@ -238,9 +241,9 @@ class DropdownFormFieldState<T> extends State<DropdownFormField>
         child: CompositedTransformFollower(
           link: this._layerLink,
           showWhenUnlinked: false,
-          offset: Offset(0.0, size.height + 3.0),
+          offset: Offset(0.0, size.height + 5.0),
           child: Material(
-              elevation: 4.0,
+              elevation: 1.0,
               child: SizedBox(
                 height: widget.dropdownHeight ?? 240,
                 child: Container(
@@ -323,16 +326,16 @@ class DropdownFormFieldState<T> extends State<DropdownFormField>
 
   _addOverlay() {
     if (_overlayEntry == null) {
-      _search("");
+      // _search("");
       _overlayBackdropEntry = _createBackdropOverlay();
       _overlayEntry = _createOverlayEntry();
       if (_overlayEntry != null) {
         // Overlay.of(context)!.insert(_overlayEntry!);
         Overlay.of(context)!
             .insertAll([_overlayBackdropEntry!, _overlayEntry!]);
-        setState(() {
-          _searchFocusNode.requestFocus();
-        });
+        // setState(() {
+        //   _searchFocusNode.requestFocus();
+        // });
       }
     }
   }
