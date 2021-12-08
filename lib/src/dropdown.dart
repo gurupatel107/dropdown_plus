@@ -56,7 +56,7 @@ class DropdownFormField<T> extends StatefulWidget {
   final InputDecoration? decoration;
   final Color? dropdownColor;
   final DropdownEditingController<T>? controller;
-  final void Function(T item)? onChanged;
+  final Function(String item)? onChanged;
   final void Function(T?)? onSaved;
   final String? Function(T?)? validator;
 
@@ -420,7 +420,7 @@ class DropdownFormFieldState<T> extends State<DropdownFormField>
     _effectiveController!.value = _selectedItem;
 
     if (widget.onChanged != null) {
-      widget.onChanged!(_selectedItem);
+      widget.onChanged!(_selectedItem as String);
     }
 
     setState(() {});
@@ -431,7 +431,7 @@ class DropdownFormFieldState<T> extends State<DropdownFormField>
     _effectiveController!.value = item;
 
     if (widget.onChanged != null) {
-      widget.onChanged!(_selectedItem);
+      widget.onChanged!(_selectedItem as String);
     }
     _searchTextController.value = TextEditingValue(text: "");
   }
